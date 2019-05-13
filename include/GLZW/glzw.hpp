@@ -2,8 +2,7 @@
 // Created by z16cn on 2019/5/8.
 //
 
-#ifndef SAINT_GLZW_HPP
-#define SAINT_GLZW_HPP
+#pragma once
 
 #include <glad.h>
 #include <stb_image.h>
@@ -12,7 +11,7 @@
 using namespace std;
 namespace  glzw{
 
-    void save(){
+    inline void save(){
         std::string filename="hello.png";
         unsigned long lImageSize;
         GLbyte * pBits= nullptr;
@@ -35,12 +34,9 @@ namespace  glzw{
         //glReadPixels(0,0,iViewport[2], iViewport[3], GL_BGR, GL_UNSIGNED_BYTE, pBits);
         glReadPixels(0, 0, iViewport[2], iViewport[3], GL_RGB, GL_UNSIGNED_BYTE, pBits);
         glReadBuffer(lastBuffer);
-        for(auto i=0;i<5;i++){
-            pBits[i*3]=255;
-        }
+
         //stbi_set_flip_vertically_on_load(1);
         stbi_flip_vertically_on_write(1);
         stbi_write_png(filename.c_str(), iViewport[2], iViewport[3],3, pBits, 0);
     }
 }
-#endif //SAINT_GLZW_HPP

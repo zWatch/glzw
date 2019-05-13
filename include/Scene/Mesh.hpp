@@ -6,7 +6,7 @@
 #define SAINT_MESH_H
 
 #include "Shader.hpp"
-#include <GLZW/Vertex.h>
+#include <GLZW/Vertex.hpp>
 #include <GLZW/Texture.h>
 #include <vector>
 class Mesh {

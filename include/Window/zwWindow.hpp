@@ -2,8 +2,7 @@
 // Created by z16cn on 2019/5/2.
 //
 
-#ifndef SAINT_WINDOW_HPP
-#define SAINT_WINDOW_HPP
+#pragma once
 
 #include <glad.h>
 #include <glfw3.h>
@@ -11,16 +10,14 @@
 #include <Scene/Shader.hpp>
 #include <Scene/MyMesh.hpp>
 #include <Scene/AbstractMesh.hpp>
-#include <GLZW/Vertex.h>
+#include <GLZW/Vertex.hpp>
 #include <stb_image.h>
 #include <stb_image_write.h>
 #include <GLZW/glzw.hpp>
+#include <Common/zwhead.hpp>
+#include <Scene/Scene.hpp>
+#include <Scene/CubeModel.hpp>
 using namespace std;
-#define OnceInit(ret) static bool hadInit=false; \
-if(hadInit){    \
-return ret;     \
-}   \
-hadInit=true;
 
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -75,7 +72,6 @@ public:
         };
 
         vertices1.SendTOGpu();
-        //vertices1.save("testHello.txt");
         vao=vertices1.VAO;
     }
 
@@ -112,6 +108,7 @@ public:
 class zwWindow{
     GLFWwindow* window=nullptr;
     testAbsMesh testAbsMesh1;
+    CubeModel cubeModel;
 public:
     void init() {
         OnceInit(void());
@@ -123,7 +120,10 @@ public:
             std::cout << "Failed to initialize GLAD" << std::endl;
         }
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-        glViewport(0,0,400,300);        testAbsMesh1.init();
+        glViewport(0,0,400,300);
+
+        //testAbsMesh1.init();
+        cubeModel.init();
     };
     void run(){
         glClearColor(0.5f, 1.0f, 1.0f, 1.0f);
@@ -131,20 +131,17 @@ public:
         glfwSwapInterval(1);
         static bool hasSave=false;
         while(!glfwWindowShouldClose(window)){
-            //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            testAbsMesh1.draw();
-
+            //testAbsMesh1.draw();
+            cubeModel.draw();
             glfwSwapBuffers(window);
             if(!hasSave){
                 glzw::save();
                 hasSave=true;
             }
-            glfwWaitEvents();
+            glfwPollEvents();
         }
 
         glfwDestroyWindow(window);
         glfwTerminate();
     };
 };
-
-#endif //SAINT_WINDOW_HPP

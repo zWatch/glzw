@@ -5,7 +5,7 @@
 #ifndef SAINT_VERTEXBUILDER_H
 #define SAINT_VERTEXBUILDER_H
 
-#include "Vertex.h"
+#include "Vertex.hpp"
 ///布局、数据、
 
 class VertexBuilder{
