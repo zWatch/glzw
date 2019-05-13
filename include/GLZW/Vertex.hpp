@@ -1,10 +1,13 @@
 //
 // Created by z16cn on 2019/4/29.
 //
+#pragma once
 
-#ifndef SAINT_VERTEX_H
-#define SAINT_VERTEX_H
-
+#include <vector>
+#include <glad.h>
+#include <glfw3.h>
+#include <json.hpp>
+#include <fstream>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <vector>
@@ -22,12 +25,8 @@ struct Vertex {
     glm::vec3 Bitangent;
 };
 
+typedef GLuint VerticesID;
 
-#include <vector>
-#include <glad.h>
-#include <glfw3.h>
-#include <json.hpp>
-#include <fstream>
 struct Vertices{
     std::vector<unsigned int> indices;
     std::vector<float> data;
@@ -102,10 +101,11 @@ public:
             sum+=i;
         }
         size_t offset=0;
-        auto interval=sum* sizeof(float);
+        auto interval=sum * sizeof(float);
         for(auto i=0; i<Gpos.size(); i++){
-            glEnableVertexAttribArray(static_cast<GLuint>(Gpos[i]));
-            glVertexAttribPointer(static_cast<GLuint>(i), size[i], GL_FLOAT, GL_FALSE, interval, (void*)offset);
+            GLuint pos=static_cast<GLuint>(Gpos[i]);
+            glEnableVertexAttribArray(pos);
+            glVertexAttribPointer(pos, size[i], GL_FLOAT, GL_FALSE, interval, (void*)offset);
             offset += size[i]* sizeof(float);
         }
         glBindVertexArray(0);
@@ -114,11 +114,7 @@ public:
     void use(){
         glBindVertexArray(VAO);
         if(UseIndecies){
-            //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         }
     }
-
 };
-
-
-#endif //SAINT_VERTEX_H

@@ -9,6 +9,7 @@
 #include <glad.h>
 #include <glfw3.h>
 #include <stb_image.h>
+#include <iostream>
 struct Texture_s {
     unsigned int id;
     std::string type;
@@ -18,7 +19,7 @@ struct Texture_s {
 typedef GLuint Texture_id;
 
 inline Texture_id loadFromMem(GLbyte* data, int width, int height, int chan){
-    Texture ret;
+    Texture_id ret;
     GLuint texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
@@ -39,7 +40,7 @@ inline Texture_id loadFromMem(GLbyte* data, int width, int height, int chan){
 inline Texture_id loadFromFile(const std::string& fp){
     // load and create a texture
     // -------------------------
-    Texture ret;
+    Texture_id ret;
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
     // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
@@ -58,10 +59,8 @@ inline Texture_id loadFromFile(const std::string& fp){
 
 class Texture{
     Texture_id getTexture(bool NeedBlock){
-
+        return 0;
     };
-
-
 };
 
 #endif //SAINT_TEXTURE_H

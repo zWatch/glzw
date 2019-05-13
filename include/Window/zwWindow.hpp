@@ -7,7 +7,6 @@
 #include <glad.h>
 #include <glfw3.h>
 #include <iostream>
-#include <Scene/Shader.hpp>
 #include <Scene/MyMesh.hpp>
 #include <Scene/AbstractMesh.hpp>
 #include <GLZW/Vertex.hpp>
@@ -17,6 +16,7 @@
 #include <Common/zwhead.hpp>
 #include <Scene/Scene.hpp>
 #include <Scene/CubeModel.hpp>
+#include <GLZW/Shader.hpp>
 using namespace std;
 
 
@@ -64,9 +64,9 @@ public:
         */
         Vertices vertices1{
                 {   //V3 C3
-                        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-                        0.25f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-                        0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
+                        -0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+                        0.25f, -0.5f, -0.1f, 0.0f, 1.0f, 0.0f,
+                        0.0f,  0.5f, -0.2f, 0.0f, 0.0f, 1.0f
                 },
                 {3,3}
         };
@@ -122,7 +122,7 @@ public:
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
         glViewport(0,0,400,300);
 
-        //testAbsMesh1.init();
+        testAbsMesh1.init();
         cubeModel.init();
     };
     void run(){
@@ -131,7 +131,7 @@ public:
         glfwSwapInterval(1);
         static bool hasSave=false;
         while(!glfwWindowShouldClose(window)){
-            //testAbsMesh1.draw();
+            testAbsMesh1.draw();
             cubeModel.draw();
             glfwSwapBuffers(window);
             if(!hasSave){
