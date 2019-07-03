@@ -5,10 +5,12 @@
 #pragma once
 
 #include <glad.h>
+#include <glfw3.h>
 #include <stb_image.h>
 #include <stb_image_write.h>
 #include <iostream>
 using namespace std;
 namespace  glzw{
     void save();
+    const char* getGLErrorInfo();
 }

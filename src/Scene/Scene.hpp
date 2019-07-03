@@ -7,6 +7,7 @@
 #include "CubeModel.hpp"
 class Scene{
 public:
+
     void init(){
 
     };

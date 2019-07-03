@@ -12,5 +12,5 @@ CTestTestfile.cmake
 3rd/
 example/
 cmake-build-debug/
-    !cmake-build-debug/resource/
+cmake-*/
 
