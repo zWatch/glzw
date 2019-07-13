@@ -61,6 +61,9 @@ class Texture{
     Texture_id getTexture(bool NeedBlock){
         return 0;
     };
+    Texture_id loadFromFile(){
+        return 0;
+    };
 };
 
 #endif //SAINT_TEXTURE_H

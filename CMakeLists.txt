@@ -1,7 +1,9 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.11.1)
 project(glzw)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+#set(CMAKE_C_STANDARD 17)
 
 include_directories(src)
 include_directories(3rd/include)
@@ -45,8 +47,6 @@ add_executable(MyCube2 src/learn/MyCube2.cpp
         )
 
 target_link_libraries(MyCube2 glfw3 opengl32)
-
-
 
 #target_link_libraries(Saint glfw3 opengl32 assimp)
 target_link_libraries(glzw glfw3 opengl32)
